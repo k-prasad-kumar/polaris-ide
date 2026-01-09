@@ -116,10 +116,10 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50; /* TODO: add "select-none" later */
   }
   body {
-    @apply bg-background text-foreground select-none;
+    @apply bg-background text-foreground;
   }
 }
 
@@ -156,5 +156,5 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-border border border-transparent border-solid bg-clip-padding;
+  @apply rounded-full bg-border border-transparent border-solid bg-clip-padding;
 }

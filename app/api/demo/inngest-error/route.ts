@@ -1,0 +1,9 @@
+import { inngest } from "@/inngest/client";
+
+export async function POST() {
+  await inngest.send({
+    name: "demo/error",
+    date: {},
+  });
+  return Response.json({ status: "started" });
+}

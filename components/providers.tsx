@@ -10,8 +10,8 @@ import {
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { ClerkProvider, useAuth, UserButton } from "@clerk/nextjs";
 import { ThemeProvider } from "./theme-provider";
-import { UnauthenticatedView } from "./auth/unauthenticated-view";
-import { AuthLoadingView } from "./auth/auth-loading-view";
+import { UnauthenticatedView } from "./auth/unauthenticated";
+import { AuthLoadingView } from "./auth/auth-loading";
 
 if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
   throw new Error("Missing NEXT_PUBLIC_CONVEX_URL in your .env file");

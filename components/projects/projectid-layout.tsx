@@ -1,4 +1,5 @@
 "use client";
+
 import { Allotment } from "allotment";
 import { Navbar } from "../layout/navbar";
 import { Id } from "@/convex/_generated/dataModel";

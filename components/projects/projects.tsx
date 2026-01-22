@@ -50,8 +50,8 @@ export const ProjectsView = () => {
           <div className="w-full flex justify-between items-center gap-4">
             <div className="flex items-center gap-2 w-full group/logo">
               <Image
-                src="./logo.svg"
-                alt="PolarisIDE"
+                src="/logo.svg"
+                alt="logo"
                 width={100}
                 height={100}
                 className="size-8 md:size-11.5"

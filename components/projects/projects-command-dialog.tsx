@@ -23,7 +23,7 @@ export const ProjectsCommandDialog = ({
   const router = useRouter();
   const projects = useProjects();
 
-  const handleSElect = (projectId: string) => {
+  const handleSelect = (projectId: string) => {
     router.push(`/projects/${projectId}`);
     onOpenChange(false);
   };
@@ -43,7 +43,7 @@ export const ProjectsCommandDialog = ({
             <CommandItem
               key={project._id}
               value={`${project.name}-${project._id}`}
-              onSelect={() => handleSElect(project._id)}
+              onSelect={() => handleSelect(project._id)}
             >
               {getProjectIcon(project)}
               <span>{project.name}</span>

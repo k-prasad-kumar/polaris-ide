@@ -15,6 +15,7 @@ import LoadingRow from "./loading-row";
 import { getItemPadding } from "./constants";
 import CreateInput from "./create-input";
 import RenameInput from "./rename-input";
+import { useEditor } from "@/hooks/use-editor";
 
 const Tree = ({
   item,
@@ -33,6 +34,8 @@ const Tree = ({
   const renameFile = useRenameFile();
   const deleteFile = useDeleteFile();
   const createFolder = useCreateFolder();
+
+  const { openFile, closeTab, activeTabId } = useEditor(projectId);
 
   const startCreating = (type: "file" | "folder") => {
     setIsOpen(true);
@@ -65,6 +68,7 @@ const Tree = ({
 
   if (item.type === "file") {
     const fileName = item.name;
+    const isActive = activeTabId === item._id;
     if (isRenaming)
       return (
         <RenameInput
@@ -80,16 +84,14 @@ const Tree = ({
       <TreeItemWrapper
         item={item}
         level={level}
-        isActive={false}
-        onClick={() => {}}
-        onDoubleClick={() => {}}
+        isActive={isActive}
+        onClick={() => openFile(item._id, { pinned: false })}
+        onDoubleClick={() => openFile(item._id, { pinned: true })}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          // Todo: close tab
+          closeTab(item._id);
           deleteFile({ id: item._id });
         }}
-        // onCreateFile={() => {}}
-        // onCreateFolder={() => {}}
       >
         <FileIcon fileName={fileName} className="size-4" autoAssign />
         <span className="truncate text-sm">{fileName}</span>
@@ -104,7 +106,7 @@ const Tree = ({
         <ChevronRightIcon
           className={cn(
             "size-4 shrink-0 text-muted-foreground",
-            isOpen && "rotate-90"
+            isOpen && "rotate-90",
           )}
         />
         <FolderIcon folderName={folderName} className="size-4" />
@@ -179,10 +181,8 @@ const Tree = ({
         level={level}
         isActive={false}
         onClick={() => setIsOpen((value) => !value)}
-        // onDoubleClick={() => {}}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          // Todo: close tab
           deleteFile({ id: item._id });
         }}
         onCreateFile={() => startCreating("file")}

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Id } from "@/convex/_generated/dataModel";
 import { FaGithub } from "react-icons/fa";
 import FileExplorer from "../file-explorer";
+import EditorView from "../editor/editor";
 
 const MIN_SIDEBAR_WIDTH = 200;
 const MAX_SIDEBAR_WIDTH = 800;
@@ -25,7 +26,7 @@ const Tab = ({
   <div
     className={cn(
       "h-full flex items-center gap-2 px-3 text-muted-foreground cursor-pointer border-r hover:bg-accent/30",
-      isActive && "bg-background text-foreground"
+      isActive && "bg-background text-foreground",
     )}
     onClick={onClick}
   >
@@ -59,7 +60,7 @@ const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
         <div
           className={cn(
             "absolute inset-0",
-            activeView == "editor" ? "visible" : "invisible"
+            activeView == "editor" ? "visible" : "invisible",
           )}
         >
           <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
@@ -72,14 +73,14 @@ const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
               <FileExplorer projectId={projectId} />
             </Allotment.Pane>
             <Allotment.Pane>
-              <p>Editor view</p>
+              <EditorView projectId={projectId} />
             </Allotment.Pane>
           </Allotment>
         </div>
         <div
           className={cn(
             "absolute inset-0",
-            activeView == "preview" ? "visible" : "invisible"
+            activeView == "preview" ? "visible" : "invisible",
           )}
         >
           <div>Preview</div>

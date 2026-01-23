@@ -20,7 +20,7 @@ import LoadingRow from "./loading-row";
 import Tree from "./tree";
 
 const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [collapseKey, setCollapseKey] = useState(0);
   const [creating, setCreating] = useState<"file" | "folder" | null>(null);
 
@@ -51,7 +51,7 @@ const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
           <ChevronRightIcon
             className={cn(
               "size-4 shrink-0 text-muted-foreground",
-              isOpen && "rotate-90"
+              isOpen && "rotate-90",
             )}
           />
           <p className="text-xs uppercase line-clamp-1">

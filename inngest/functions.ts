@@ -23,7 +23,7 @@ export const demoGenerate = inngest.createFunction(
         urls.map(async (url) => {
           const result = await firecrawl.scrape(url, { formats: ["markdown"] });
           return result.markdown ?? null;
-        })
+        }),
       );
       return results.filter(Boolean).join("\n\n");
     });
@@ -43,7 +43,7 @@ export const demoGenerate = inngest.createFunction(
         },
       });
     });
-  }
+  },
 );
 
 export const demoError = inngest.createFunction(
@@ -53,5 +53,5 @@ export const demoError = inngest.createFunction(
     await step.run("fail", async () => {
       throw new Error("Inngest error : Background job failed!");
     });
-  }
+  },
 );

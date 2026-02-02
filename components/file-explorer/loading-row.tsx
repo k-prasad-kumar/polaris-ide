@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
-import { getItemPadding } from "./constants";
-import { Spinner } from "../ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 
-const LoadingRow = ({
+import { getItemPadding } from "./constants";
+
+export const LoadingRow = ({
   className,
   level = 0,
 }: {
@@ -18,4 +19,3 @@ const LoadingRow = ({
     </div>
   );
 };
-export default LoadingRow;

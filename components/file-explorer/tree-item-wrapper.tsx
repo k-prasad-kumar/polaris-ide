@@ -1,16 +1,17 @@
+import { cn } from "@/lib/utils";
 import {
   ContextMenu,
-  ContextMenuContent,
   ContextMenuItem,
+  ContextMenuContent,
   ContextMenuTrigger,
   ContextMenuShortcut,
   ContextMenuSeparator,
 } from "@/components/ui/context-menu";
-import { Doc } from "@/convex/_generated/dataModel";
-import { cn } from "@/lib/utils";
-import { getItemPadding } from "./constants";
 
-const TreeItemWrapper = ({
+import { getItemPadding } from "./constants";
+import { Doc } from "@/convex/_generated/dataModel";
+
+export const TreeItemWrapper = ({
   item,
   children,
   level,
@@ -46,8 +47,8 @@ const TreeItemWrapper = ({
             }
           }}
           className={cn(
-            "w-full h-5.5 flex items-center gap-1 group outline-none hover:bg-accent/30 focus:ring-1 focus:ring-inset focus:ring-ring",
-            isActive && "bg-accent/30"
+            "group flex items-center gap-1 w-full h-5.5 hover:bg-accent/30 outline-none focus:ring-1 focus:ring-inset focus:ring-ring",
+            isActive && "bg-accent/30",
           )}
           style={{ paddingLeft: getItemPadding(level, item.type === "file") }}
         >
@@ -74,11 +75,10 @@ const TreeItemWrapper = ({
           <ContextMenuShortcut>Enter</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuItem onClick={onDelete} className="text-sm">
-          Delete Permanently...
+          Delete Permanently
           <ContextMenuShortcut>⌘Backspace</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
 };
-export default TreeItemWrapper;

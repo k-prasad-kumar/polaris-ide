@@ -1,5 +1,5 @@
 import { Id } from "@/convex/_generated/dataModel";
-import ProjectIdView from "@/components/projects/projectid-view";
+import { ProjectIdView } from "@/components/projects/projectid-view";
 
 const page = async ({
   params,

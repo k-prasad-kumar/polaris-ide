@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { Allotment } from "allotment";
-import { cn } from "@/lib/utils";
 
+import { cn } from "@/lib/utils";
+import { EditorView } from "@/components/editor/editor";
+
+import { FileExplorer } from "@/components/file-explorer";
 import { Id } from "@/convex/_generated/dataModel";
-import { FaGithub } from "react-icons/fa";
-import FileExplorer from "../file-explorer";
-import EditorView from "../editor/editor";
+import { PreviewView } from "./preview-view";
+import { ExportPopover } from "./export-popover";
 
 const MIN_SIDEBAR_WIDTH = 200;
 const MAX_SIDEBAR_WIDTH = 800;
-const DEFAULT_SIDEBAR_WIDTH = 400;
+const DEFAULT_SIDEBAR_WIDTH = 350;
 const DEFAULT_MAIN_SIZE = 1000;
 
 const Tab = ({
@@ -22,19 +24,23 @@ const Tab = ({
   label: string;
   isActive: boolean;
   onClick: () => void;
-}) => (
-  <div
-    className={cn(
-      "h-full flex items-center gap-2 px-3 text-muted-foreground cursor-pointer border-r hover:bg-accent/30",
-      isActive && "bg-background text-foreground",
-    )}
-    onClick={onClick}
-  >
-    <span className="text-sm">{label}</span>
-  </div>
-);
-const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
+}) => {
+  return (
+    <div
+      onClick={onClick}
+      className={cn(
+        "flex items-center gap-2 h-full px-3 cursor-pointer text-muted-foreground border-r hover:bg-accent/30",
+        isActive && "bg-background text-foreground",
+      )}
+    >
+      <span className="text-sm">{label}</span>
+    </div>
+  );
+};
+
+export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [activeView, setActiveView] = useState<"editor" | "preview">("editor");
+
   return (
     <div className="h-full flex flex-col">
       <nav className="h-8.75 flex items-center bg-sidebar border-b">
@@ -48,19 +54,15 @@ const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
           isActive={activeView === "preview"}
           onClick={() => setActiveView("preview")}
         />
-        <div className="h-full flex flex-1 justify-end">
-          <div className="h-full flex items-center gap-1.5 px-3 text-muted-foreground cursor-pointer border-l hover:bg-accent/30">
-            <FaGithub className="size-3.5" />{" "}
-            <span className="text-sm">Export</span>
-          </div>
+        <div className="flex-1 flex justify-end h-full">
+          <ExportPopover projectId={projectId} />
         </div>
       </nav>
-
       <div className="flex-1 relative">
         <div
           className={cn(
             "absolute inset-0",
-            activeView == "editor" ? "visible" : "invisible",
+            activeView === "editor" ? "visible" : "invisible",
           )}
         >
           <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
@@ -80,13 +82,12 @@ const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
         <div
           className={cn(
             "absolute inset-0",
-            activeView == "preview" ? "visible" : "invisible",
+            activeView === "preview" ? "visible" : "invisible",
           )}
         >
-          <div>Preview</div>
+          <PreviewView projectId={projectId} />
         </div>
       </div>
     </div>
   );
 };
-export default ProjectIdView;

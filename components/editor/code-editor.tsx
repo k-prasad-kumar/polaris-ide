@@ -25,12 +25,13 @@ export const CodeEditor = ({
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
 
-  const languageExtension = useMemo(
-    () => getLanguageExtension(fileName),
-    [fileName],
-  );
+  const languageExtension = useMemo(() => {
+    return getLanguageExtension(fileName);
+  }, [fileName]);
+
   useEffect(() => {
     if (!editorRef.current) return;
+
     const view = new EditorView({
       doc: initialValue,
       parent: editorRef.current,
@@ -58,8 +59,7 @@ export const CodeEditor = ({
     return () => {
       view.destroy();
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- initialValue is only used for initial document
   }, [languageExtension]);
 
   return <div ref={editorRef} className="size-full pl-4 bg-background" />;

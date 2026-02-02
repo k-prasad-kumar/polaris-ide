@@ -1,9 +1,13 @@
 import { serve } from "inngest/next";
 import { inngest } from "@/inngest/client";
-import { demoError, demoGenerate } from "@/inngest/functions";
+import { processMessage } from "@/inngest/process-messages";
 
 // Create an API that serves zero functions
 export const { GET, POST, PUT } = serve({
   client: inngest,
-  functions: [demoGenerate, demoError],
+  functions: [
+    processMessage,
+    // importGithubRepo,
+    // exportToGithub,
+  ],
 });

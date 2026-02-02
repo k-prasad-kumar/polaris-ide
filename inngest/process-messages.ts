@@ -1,4 +1,4 @@
-import { createAgent, grok, createNetwork } from "@inngest/agent-kit";
+import { createAgent, gemini, createNetwork } from "@inngest/agent-kit";
 
 import { inngest } from "@/inngest/client";
 import { Id } from "@/convex/_generated/dataModel";
@@ -115,9 +115,14 @@ export const processMessage = inngest.createFunction(
       const titleAgent = createAgent({
         name: "title-generator",
         system: TITLE_GENERATOR_SYSTEM_PROMPT,
-        model: grok({
-          model: "llama-3.1-8b-instant",
-          defaultParameters: { temperature: 0 },
+        // model: grok({
+        //   model: "llama-3.1-8b-instant",
+        //   apiKey: process.env.GROK_API_KEY,
+        //   defaultParameters: { temperature: 0 },
+        // }),
+        model: gemini({
+          model: "gemini-2.5-flash-lite",
+          apiKey: process.env.GEMINI_API_KEY,
         }),
       });
 
@@ -153,9 +158,9 @@ export const processMessage = inngest.createFunction(
       name: "polarisIDE",
       description: "An expert AI coding assistant",
       system: systemPrompt,
-      model: grok({
-        model: "llama-3.1-8b-instant",
-        defaultParameters: { temperature: 0.3 },
+      model: gemini({
+        model: "gemini-2.5-flash",
+        apiKey: process.env.GEMINI_API_KEY,
       }),
       tools: [
         createListFilesTool({ internalKey, projectId }),

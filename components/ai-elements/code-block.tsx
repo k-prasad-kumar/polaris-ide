@@ -167,7 +167,14 @@ const createRawTokens = (code: string): TokenizedCode => ({
   bg: "transparent",
 });
 
-// Synchronous highlight with callback for async results
+/**
+ * Obtain tokenized syntax highlighting for the given code; returns a cached result immediately when available and otherwise schedules asynchronous highlighting and subscriber notification.
+ *
+ * @param code - The source code to highlight
+ * @param language - The target language to highlight (a BundledLanguage)
+ * @param callback - Optional subscriber invoked with the tokenized result once async highlighting completes
+ * @returns `TokenizedCode` if a cached tokenization exists for the given code and language, `null` otherwise. If `null` and a `callback` is provided, the callback will be called with the tokenized result when ready.
+ */
 export function highlightCode(
   code: string,
   language: BundledLanguage,

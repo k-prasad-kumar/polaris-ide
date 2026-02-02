@@ -11,6 +11,15 @@ const requestSchema = z.object({
   description: z.string().max(350).optional(),
 });
 
+/**
+ * API route handler that validates the user and enqueues a GitHub repository export for a project.
+ *
+ * Validates authentication and Pro plan access, parses and validates request body, ensures the user has a connected
+ * GitHub OAuth token and that a server internal key is configured, then dispatches an event to perform the export.
+ *
+ * @returns A JSON HTTP response. On success: `{ success: true, projectId, eventId }`. On failure: `{ error: string }`
+ * with an appropriate HTTP status code (`401`, `403`, `400`, or `500`).
+ */
 export async function POST(request: Request) {
   const { userId, has } = await auth();
 

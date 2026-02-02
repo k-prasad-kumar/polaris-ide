@@ -133,8 +133,9 @@ export type PromptInputProviderProps = PropsWithChildren<{
 }>;
 
 /**
- * Optional global provider that lifts PromptInput state outside of PromptInput.
- * If you don't use it, PromptInput stays fully self-managed.
+ * Provides an optional context that lifts PromptInput's text and attachment state out of the local component so descendant PromptInput-related components can share and control the same state.
+ *
+ * @param initialInput - Initial value for the shared text input (defaults to an empty string)
  */
 export function PromptInputProvider({
   initialInput: initialTextInput = "",

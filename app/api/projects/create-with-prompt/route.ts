@@ -19,6 +19,20 @@ const requestSchema = z.object({
   prompt: z.string().min(1),
 });
 
+/**
+ * Create a new project with an initial conversation and seed messages using a user-provided prompt.
+ *
+ * Parses the request JSON for a `prompt`, authenticates the caller, generates a random project name,
+ * creates the project and conversation, stores the user's message and a placeholder assistant message,
+ * and enqueues processing for the assistant response.
+ *
+ * @param request - HTTP request whose JSON body must include a `prompt` string
+ * @returns A JSON object containing the created `projectId`
+ *
+ * Possible HTTP responses:
+ * - 401 when the caller is not authenticated
+ * - 500 when the required internal key is not configured
+ */
 export async function POST(request: Request) {
   const { userId } = await auth();
 

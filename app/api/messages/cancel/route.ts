@@ -12,6 +12,16 @@ const requestSchema = z.object({
   projectId: z.string(),
 });
 
+/**
+ * Cancels any in-progress processing messages for the specified project and returns the result.
+ *
+ * @param request - HTTP request whose JSON body must include `projectId` (string)
+ * @returns A JSON response object:
+ *  - Success with no cancellations: `{ success: true, cancelled: false }`
+ *  - Success with cancellations: `{ success: true, cancelled: true, messageIds: string[] }`
+ *  - Authentication failure: 401 with `{ error: "Unauthorized" }`
+ *  - Missing internal key: 500 with `{ error: "Internal key not configured" }`
+ */
 export async function POST(request: Request) {
   const { userId } = await auth();
 

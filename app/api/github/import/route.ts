@@ -11,6 +11,13 @@ const requestSchema = z.object({
   url: z.url(),
 });
 
+/**
+ * Extracts the repository owner and name from a GitHub repository URL.
+ *
+ * @param url - A GitHub repository URL (e.g. "https://github.com/owner/repo" or "https://github.com/owner/repo.git")
+ * @returns An object with `owner` (the repository owner or organization) and `repo` (the repository name without a trailing ".git")
+ * @throws Error if the provided URL is not a valid GitHub repository URL
+ */
 function parseGitHubUrl(url: string) {
   const match = url.match(/github\.com\/([^/]+)\/([^/]+)/);
   if (!match) {
@@ -20,6 +27,14 @@ function parseGitHubUrl(url: string) {
   return { owner: match[1], repo: match[2].replace(/\.git$/, "") };
 }
 
+/**
+ * Handles importing a GitHub repository URL to create a project and enqueue an import event.
+ *
+ * Authenticates the user, validates the request body for a `url` (GitHub repo), ensures the user has a connected GitHub OAuth token and server internal key, creates a project via Convex, and sends an import event to Inngest.
+ *
+ * @param request - The incoming HTTP request whose JSON body must include a `url` field containing a GitHub repository URL.
+ * @returns On success, an object `{ success: true, projectId: string, eventId: string }`. On failure, an error object is returned with an appropriate HTTP status: `401` when unauthenticated, `400` when GitHub is not connected, or `500` for server configuration errors.
+ */
 export async function POST(request: Request) {
   const { userId, has } = await auth();
 

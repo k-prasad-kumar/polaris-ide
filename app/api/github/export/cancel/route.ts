@@ -12,6 +12,13 @@ const requestSchema = z.object({
   projectId: z.string(),
 });
 
+/**
+ * Handle POST requests to cancel a project's GitHub export.
+ *
+ * Emits an Inngest event named "github/export.cancel" with the provided `projectId` and updates the export status to "cancelled" in Convex.
+ *
+ * @returns A JSON NextResponse containing `success: true`, the provided `projectId`, and `eventId` (the first ID from the sent event). Responds with 401 if the user is unauthenticated or 500 if required server configuration is missing.
+ */
 export async function POST(request: Request) {
   const { userId } = await auth();
 

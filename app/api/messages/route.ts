@@ -13,6 +13,23 @@ const requestSchema = z.object({
   message: z.string(),
 });
 
+/**
+ * Handle POST requests to create a user message in a conversation, cancel any in-flight processing messages for the same project, create an assistant placeholder, and trigger processing.
+ *
+ * Expects the request body to be JSON with:
+ * - `conversationId`: string — ID of the conversation to append the message to
+ * - `message`: string — the user's message content
+ *
+ * Returns a JSON object with `{ success: true, eventId, messageId }` on success.
+ *
+ * Possible error responses:
+ * - 401 Unauthorized when the caller is not authenticated
+ * - 500 Internal Server Error when the internal Convex key is not configured
+ * - 404 Not Found when the specified conversation does not exist
+ *
+ * @param request - The incoming HTTP request containing a JSON body with `conversationId` and `message`
+ * @returns An object containing `success: true`, the triggered event's `eventId`, and the created assistant `messageId`
+ */
 export async function POST(request: Request) {
   const { userId } = await auth();
 

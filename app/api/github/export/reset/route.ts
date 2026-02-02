@@ -11,6 +11,15 @@ const requestSchema = z.object({
   projectId: z.string(),
 });
 
+/**
+ * Resets the export status for the project identified in the request body.
+ *
+ * Expects a JSON body with a `projectId` string. Authenticates the caller, verifies
+ * the required internal Convex key is present, clears the project's export status and repo URL,
+ * and returns the result.
+ *
+ * @returns A NextResponse with `{ success: true, projectId }` on success; on failure returns a JSON error with status `401` when unauthenticated or `500` when the server is misconfigured.
+ */
 export async function POST(request: Request) {
   const { userId } = await auth();
 

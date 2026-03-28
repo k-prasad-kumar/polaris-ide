@@ -136,7 +136,7 @@ Live Demo: https://polaris-ide.vercel.app
 
 ### 💡Why This Project- ?
 ---
-FlameIt demonstrates:
+Polaris IDE demonstrates:
 - Building complex browser-based tools
 - AI integration in real-world applications
 - State management for large-scale apps

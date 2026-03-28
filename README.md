@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Polaris IDE – AI-Powered Browser Code Editor
+Polaris is a browser-based code editor inspired by VS Code, built with modern web technologies and integrated with AI capabilities. It allows users to write, manage, and interact with code directly in the browser with real-time features and intelligent assistance.
 
-## Getting Started
+---
 
-First, run the development server:
+## 🚀 Features
+
+- 🧑‍💻 Full-featured code editor in the browser  
+- 📁 Project & file management system  
+- 🧠 AI-powered code completion and chat assistant  
+- 💬 Built-in AI chat/agent for coding help  
+- 💾 Auto-save functionality for seamless workflow  
+- 🗂 Folder structure with file navigation  
+- 🔍 Code preview and execution support  
+- 📥 Import projects from GitHub  
+- 📤 Export/download project files  
+- 🧭 Minimap for better code navigation   
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+- Next.js
+- TypeScript
+- Tailwind CSS  
+
+**Editor & State**
+- CodeMirror
+- Zustand 
+
+**Backend / Database**
+- Convex  
+
+**AI Integration**
+- Gemini Generative API
+
+**Background Jobs**
+- Inngest
+
+**Monitoring**
+- Sentry 
+
+---
+
+## 📦 Installation & Setup
+
+Follow these steps to set up the project locally.
+
+---
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/k-prasad-kumar/polaris-ide.git
+cd polaris-ide
+```
+
+### 2️⃣ Install Dependencies
+
+Make sure you have Node.js (v18 or above) installed.
+
+```bash
+npm install
+```
+
+### 3️⃣ Environment Variables Setup
+
+Create a .env file in the root directory and add the following:
+
+```env
+INNGEST_EVENT_KEY=your_preview_key
+INNGEST_SIGNING_KEY=your_preview_key
+
+INNGEST_EVENT_KEY=your_production_key
+INNGEST_SIGNING_KEY=your_production_key
+
+CONVEX_DEPLOYMENT=your_convex_deployment
+NEXT_PUBLIC_CONVEX_URL=your_convex_url
+POLARIS_IDE_CONVEX_INTERNAL_KEY=your_convex_internal_key
+CONVEX_DEPLOY_KEY=your_convex-deploy_key
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_key
+CLERK_JWT_ISSUER_DOMAIN=your_clerk_jwt_domain
+
+GEMINI_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
+XAI_API_KEY=your_xai_api_key
+FIRECRAWL_API_KEY=your_firecrawl_api_key
+
+SENTRY_AUTH_TOKEN=your_sentry_auth_token
+
+```
+
+### 4️⃣ Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ⚙️ Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run start     # Start production server
+npm run lint      # Run linting
+```
+Now open your browser and go to:
+👉 http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 🧠 Architecture Overview
+---
+- Built as a full-stack application using Next.js
+- Code editing powered by CodeMirror
+- State management handled using Zustand
+- Real-time data and backend powered by Convex
+- AI features integrated using Gemini API
+- Background tasks handled with Inngest
+- Error monitoring with Sentry
+---
 
-To learn more about Next.js, take a look at the following resources:
+### 📸 Demo
+---
+Live Demo: https://polaris-ide.vercel.app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshots of this project in mobile version
+<div style="display: flex; justify-content: space-around;">
+<img src="./public/0.png" alt="Home" width="200" />
+<img src="./public/1.png" alt="Editor" width="200" />
+<img src="./public/2.png" alt="Preview" width="200" />
+</div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 💡Why This Project- ?
+---
+FlameIt demonstrates:
+- Building complex browser-based tools
+- AI integration in real-world applications
+- State management for large-scale apps
+- Editor systems and file structure handling
+- Full-stack architecture using modern technologies
+---
 
-## Deploy on Vercel
+### 📬 Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you'd like to connect or discuss opportunities:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- LinkedIn: https://www.linkedin.com/in/k-prasad-kumar
+- Email: kprasadkumar7@gmail.com
+---
+
+### ⭐ Support
+
+## If you found this project useful or interesting, consider giving it a ⭐ on GitHub!
+
+
+
+
+
+

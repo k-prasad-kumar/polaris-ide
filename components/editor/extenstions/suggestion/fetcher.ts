@@ -43,7 +43,7 @@ export const fetcher = async (
     if (error instanceof Error && error.name === "AbortError") {
       return null;
     }
-    toast.error("Failed to fetch AI completion");
+    toast.error("Failed to fetch AI completion cause free limit reached");
     return null;
   }
 };

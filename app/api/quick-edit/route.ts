@@ -2,7 +2,7 @@ import { z } from "zod";
 import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { groq } from "@ai-sdk/groq";
+import { google } from "@ai-sdk/google";
 
 import { firecrawl } from "@/lib/firecrawl";
 
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
       .replace("{documentation}", documentationContext);
 
     const { output } = await generateText({
-      model: groq("meta-llama/llama-4-maverick-17b-128e-instruct"),
+      model: google("gemini-2.5-flash"),
       output: Output.object({ schema: quickEditSchema }),
       prompt,
     });
